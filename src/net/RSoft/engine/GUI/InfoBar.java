@@ -7,7 +7,7 @@ import net.RSoft.engine.graphics.CharList;
 public class InfoBar extends Bitmap {
 	
 	public Bitmap pop, food, gold, energy, gCap, happy;
-	public CharList popNum, foodNum, goldNum, eNum, gcNum, happyNum, date;
+	public CharList popNum, foodNum, goldNum, goldAdd, eNum, gcNum, happyNum, date;
 
 	public InfoBar(int x, int y) {
 		super(x, y, "GUI/InfoBar", 2);
@@ -16,7 +16,8 @@ public class InfoBar extends Bitmap {
 		popNum = new CharList(x+28, y+8, "100/100", 1, -1);
 		
 		gold = new Bitmap(x+90, y+8, "GUI/Gold", 2);
-		goldNum = new CharList(x+110, y+8, "100/100", 1, -1);
+		goldNum = new CharList(x+111, y+8, "100/100", 1, -1);
+		goldAdd = new CharList(x+116, y+18, "+2", 1, -1);
 		
 		energy = new Bitmap(x+177, y+8, "GUI/Energy", 2);
 		eNum = new CharList(x+197, y+8, "100", 1, -1);
@@ -36,6 +37,7 @@ public class InfoBar extends Bitmap {
 	public void tick(){
 		popNum.setString(Main.mn.gm.pop + "/" + Main.mn.gm.hoCap);
 		goldNum.setString(Main.mn.gm.gold + "/" + Main.mn.gm.maxGold);
+		goldAdd.setString("+" + Main.mn.gm.goldLast);
 		eNum.setString(Main.mn.gm.energy + "");
 		foodNum.setString(Main.mn.gm.food + "");
 		gcNum.setString(Main.mn.gm.gCap + "");
@@ -51,6 +53,7 @@ public class InfoBar extends Bitmap {
 		
 		gold.draw(pix, xOffset, yOffset);
 		goldNum.draw(pix, xOffset, yOffset);
+		goldAdd.draw(pix, xOffset, yOffset);
 		
 		energy.draw(pix, xOffset, yOffset);
 		eNum.draw(pix, xOffset, yOffset);

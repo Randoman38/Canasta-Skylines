@@ -16,23 +16,16 @@ public ExitGame exit;
 		exit = new ExitGame(x+(WIDTH/2)-10, y+270);
 	}
 	
+	public void unlock(){
+		
+	}
+	
 	public void tick() {
 		exit.tick();
 	}
 	
-	public void render(int[][] pix, int xOffset, int yOffset) {
-		title.y = y+12;
+	public void cusRender(int[][] pix, int xOffset, int yOffset) {
 		exit.y = y+270;
-		
-		draw(pix, xOffset, yOffset);
-		title.draw(pix, xOffset, yOffset);
-		
-		for(int i=1;i<lines.length;i++){
-			text.setString(lines[i], 0x000000);
-			text.y = y+60+i*8+i*3;
-			
-			text.draw(pix, xOffset, yOffset);
-		}
 		
 		exit.draw(pix, xOffset, yOffset);
 	}

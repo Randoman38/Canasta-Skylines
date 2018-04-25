@@ -5,7 +5,7 @@ public class CharList extends Bitmap {
 	public final int TILEWIDTH = 7, TILEHEIGHT = 8;
 	private String[] chars = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 							  "abcdefghijklmnopqrstuvwxyz",
-							  "0123456789/,.-_!?:()"};
+							  "0123456789/,.-_!?:()'+="};
 	
 	public CharList(int x, int y, String str, int color){
 		super(x, y, "Font");

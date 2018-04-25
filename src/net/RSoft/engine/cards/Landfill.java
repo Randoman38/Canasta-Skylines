@@ -6,11 +6,7 @@ import net.RSoft.engine.map.building.TrashHeap;
 public class Landfill extends Card {
 	
 	public Landfill(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/Landfill", 2, index);
-		
-		desc = new String[]{"Landfill", "Provides 1 trash capacity."};
-		
-		cost = 2;
+		super(x, y, 40, 22, "Card/Landfill", 2, index, new String[]{"Landfill", "Provides 1 trash capacity."}, 2, null);
 	}
 	
 	public Card clone(int x, int y, int index) {

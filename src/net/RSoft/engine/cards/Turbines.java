@@ -6,12 +6,8 @@ import net.RSoft.engine.map.building.WindFarm;
 public class Turbines extends Card {
 	
 	public Turbines(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/WindFarm", 2, index);
+		super(x, y, 40, 22, "Card/WindFarm", 2, index, new String[]{"Wind Farm", "Provides 2 energy."}, 4, new int[]{0});
 		
-		desc = new String[]{"Wind Farm", "Provides 2 energy."};
-		
-		cost = 4;
-		noBuild = new int[]{0};
 	}
 	
 	public Card clone(int x, int y, int index) {

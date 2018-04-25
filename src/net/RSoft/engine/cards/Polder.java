@@ -6,12 +6,8 @@ import net.RSoft.engine.map.PolderTile;
 public class Polder extends Card {
 	
 	public Polder(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/Polder", 2, index);
+		super(x, y, 40, 22, "Card/Polder", 2, index, new String[]{"Polder", "Built on water to allow land buildings", "to be built on top.", "Only built on water."}, 6, new int[]{1, 2});
 		
-		desc = new String[]{"Polder", "Built on water to allow land buildings", "to be built on top.", "Only built on water."};
-		
-		cost = 6;
-		noBuild = new int[]{1, 2};
 	}
 	
 	public Card clone(int x, int y, int index) {
@@ -36,6 +32,7 @@ boolean b = false;
 		
 		if(b && Main.mn.gm.map.buildings[x][y] == null && Main.mn.gm.map.claimed[x][y]){
 			Main.mn.gm.map.tiles[x][y] = new PolderTile(Main.mn.gm.map.X + x*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.Y + y*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.SCALE);
+			Main.mn.gm.map.tiles[x][y].id = 2;
 			Main.mn.gm.gold -= Main.mn.gm.cards.cards[Main.mn.gm.cardBuilding].cost;
 			Main.mn.gm.cards.cards[Main.mn.gm.cardBuilding] = null;
 			Main.mn.gm.building = false;

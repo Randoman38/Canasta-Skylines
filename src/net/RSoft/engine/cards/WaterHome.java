@@ -1,17 +1,17 @@
 package net.RSoft.engine.cards;
 
 import net.RSoft.engine.Main;
-import net.RSoft.engine.map.building.Harbor;
+import net.RSoft.engine.map.building.Pier;
 
-public class Harbour extends Card {
+public class WaterHome extends Card {
 	
-	public Harbour(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/Harbour", 2, index, new String[]{"Harbour", "Provides 2 gold.", "Provides adjacency bonuses to everything.", "Only built on water."}, 4, new int[]{1, 2});
+	public WaterHome(int x, int y, int index) {
+		super(x, y, 40, 22, "Card/Pier", 2, index, new String[]{"Pier", "Provides 2 housing.", "Can only be built on water."}, 4, new int[]{1, 2});
 		
 	}
 	
 	public Card clone(int x, int y, int index) {
-		return new Harbour(x, y, index);
+		return new WaterHome(x, y, index);
 	}
 	
 	public void build(int x, int y) {
@@ -31,7 +31,7 @@ public class Harbour extends Card {
 		}
 		
 		if(b && Main.mn.gm.map.buildings[x][y] == null && Main.mn.gm.map.claimed[x][y]){
-			Main.mn.gm.map.buildings[x][y] = new Harbor(Main.mn.gm.map.X + x*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.Y + y*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.SCALE);
+			Main.mn.gm.map.buildings[x][y] = new Pier(Main.mn.gm.map.X + x*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.Y + y*16*Main.mn.gm.map.SCALE, Main.mn.gm.map.SCALE);
 			Main.mn.gm.gold -= Main.mn.gm.cards.cards[Main.mn.gm.cardBuilding].cost;
 			Main.mn.gm.cards.cards[Main.mn.gm.cardBuilding] = null;
 			Main.mn.gm.building = false;

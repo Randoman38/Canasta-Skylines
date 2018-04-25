@@ -14,9 +14,9 @@ public class Game {
 	
 	public int maxCount = 20, count = maxCount, day = 1, month = 0, year = 2018, monthCount = 0;
 	
-	public int gold = 12, maxGold = 100, pop = 2, arrived = 0, hoCap = 0, gCap = 0, energy = 0, food = 0, happiness = generateHappiness();
+	public int gold = 12, maxGold = 50, goldLast = 12, pop = 2, arrived = 0, hoCap = 0, gCap = 0, energy = 0, food = 0, happiness = generateHappiness();
 	
-	public boolean building = false, demolishing = false;
+	public boolean building = false, demolishing = false, firstClaim = false;
 	public int cardBuilding = -1, selX = 0, selY = 0;
 	
 	public InfoBar infoBar;
@@ -28,6 +28,7 @@ public class Game {
 	
 	public SellButton sell;
 	public Demolish demolish;
+	public SkipTime skip;
 	
 	public Game(int width, int height){
 		pixels = new int[width][height];
@@ -39,10 +40,12 @@ public class Game {
 		
 		sell = new SellButton(322, 332);
 		demolish = new Demolish(298, 332);
+		skip = new SkipTime(525, 4);
 	}
 	
 	public void tickMonth(){
 		gold += pop + 2;
+		goldLast = pop + 2;
 		
 		hoCap = 0;
 		gCap = 0;
@@ -55,7 +58,10 @@ public class Game {
 			for(int y=0;y<map.HEIGHT;y++){
 				if(map.buildings[x][y] != null){
 					gold += map.buildings[x][y].gold;
+					goldLast += map.buildings[x][y].gold;
+					
 					if(gold > maxGold){
+						goldLast += (maxGold - gold);
 						gold = maxGold;
 					}
 					
@@ -93,6 +99,17 @@ public class Game {
 			if(pop <= 3){
 				event = new LosePopup();
 			}
+		}
+		
+		unlocks(monthCount);
+	}
+	
+	public void unlocks(int count){
+		switch(count){
+		case 4:
+			event = new PierPopup();
+			event.unlock();
+			break;
 		}
 	}
 	
@@ -135,14 +152,14 @@ public class Game {
 	}
 	
 	public int generateHappiness(){
-		int hc = 0, gc = 0, en = 0, fd = 0, total = 0;
+		double hc = 0, gc = 0, en = 0, fd = 0, total = 0;
 		
 		if(hoCap > pop){
 			hc = 100;
 		}else if(hoCap == pop){
 			hc = 85;
 		}else{
-			hc = (int) (hoCap/pop)-15;
+			hc = (hoCap/pop);
 			
 			if(hc < 0){
 				hc = 0;
@@ -154,7 +171,7 @@ public class Game {
 		}else if(gCap == pop){
 			gc = 85;
 		}else{
-			gc = (int) (gCap/pop)-15;
+			gc = (gCap/pop);
 			
 			if(gc < 0){
 				gc = 0;
@@ -166,7 +183,7 @@ public class Game {
 		}else if(energy == pop){
 			en = 85;
 		}else{
-			en = (int) (energy/pop)-15;
+			en = (energy/pop);
 			
 			if(en < 0){
 				en = 0;
@@ -178,7 +195,7 @@ public class Game {
 		}else if(food == pop){
 			fd = 85;
 		}else{
-			fd = (int) (food/pop)-15;
+			fd = (food/pop);
 			
 			if(fd < 0){
 				fd = 0;
@@ -187,28 +204,34 @@ public class Game {
 		
 		total = (hc+gc+en+fd)/4;
 		
-		return total;
+		if(total > 100){
+			total = 100;
+		}
+		
+		return (int) total;
 	}
 	
 	public void tick(){
 		if(event == null){
 			if(!building && !demolishing){
-				count--;
-				if(count <= 0){
-					count = maxCount;
-					day++;
-					
-					if(day>monthLengths[month]){
-						day = 1;
-						month++;
-						monthCount++;
+				if(firstClaim){
+					count--;
+					if(count <= 0){
+						count = maxCount;
+						day++;
 						
-						if(month>=months.length){
-							month = 0;
-							year++;
+						if(day>monthLengths[month]){
+							day = 1;
+							month++;
+							monthCount++;
+							
+							if(month>=months.length){
+								month = 0;
+								year++;
+							}
+							
+							tickMonth();
 						}
-						
-						tickMonth();
 					}
 				}
 				
@@ -217,9 +240,9 @@ public class Game {
 				map.tick();
 				cards.tick();
 				demolish.tick();
+				skip.tick();
 			}else if(building){
 				if(Main.mn.ms.released && map.isSel){
-						
 					if(cards.cards[cardBuilding].noBuild != null){
 						int noMatches = 0;
 						
@@ -278,6 +301,7 @@ public class Game {
 		
 		sell.draw(pixels, 0, 0);
 		demolish.draw(pixels, 0, 0);
+		skip.draw(pixels, 0, 0);
 		
 		if(event != null){
 			event.render(pixels, 0, 0);

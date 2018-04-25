@@ -20,16 +20,16 @@ public class SellButton extends Button {
 			}
 			
 			Main.mn.gm.cards.cards[Main.mn.gm.cardBuilding] = null;
-			
 			Main.mn.gm.cardBuilding = -1;
+			
+			state = 0;
+			read(0, state);
 		}
 	}
 	
 	public void cusTick() {
 		if(contains(Main.mn.ms)){
 			state = 1;
-		}else{
-			state = 0;
 		}
 	}
 }

@@ -118,18 +118,19 @@ public class Map {
 				if(buildings[x][y] != null){
 					int i = 0;
 					
-					if((y-1 >= 0 && buildings[x][y-1] != null) && (buildings[x][y-1].id == buildings[x][y].id || buildings[x][y-1].id == "Building/Harbour")){
-						i++;
-					}
-					
-					if((y+1 < HEIGHT && buildings[x][y+1] != null) && (buildings[x][y+1].id == buildings[x][y].id || buildings[x][y+1].id == "Building/Harbour")){
-						i++;
-					}
-					if((x-1 >= 0 && buildings[x-1][y] != null) && (buildings[x-1][y].id == buildings[x][y].id || buildings[x-1][y].id == "Building/Harbour")){
-						i++;
-					}
-					if((x+1 < WIDTH && buildings[x+1][y] != null) && (buildings[x+1][y].id == buildings[x][y].id || buildings[x+1][y].id == "Building/Harbour")){
-						i++;
+					for(int j=0;j<buildings[x][y].adj.length;j++){
+						if((y-1 >= 0 && buildings[x][y-1] != null) && buildings[x][y].adj[j] == buildings[x][y-1].id){
+							i++;
+						}
+						if((y+1 < HEIGHT && buildings[x][y+1] != null) && buildings[x][y].adj[j] == buildings[x][y+1].id){
+							i++;
+						}
+						if((x-1 >= 0 && buildings[x-1][y] != null) && buildings[x][y].adj[j] == buildings[x-1][y].id){
+							i++;
+						}
+						if((x+1 < WIDTH && buildings[x+1][y] != null) && buildings[x][y].adj[j] == buildings[x+1][y].id){
+							i++;
+						}
 					}
 					
 					if(i > 0){

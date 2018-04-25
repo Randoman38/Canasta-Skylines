@@ -6,10 +6,8 @@ import net.RSoft.engine.map.building.CommercialHub;
 public class Commerce extends Card {
 	
 	public Commerce(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/CommerceDist", 2, index);
+		super(x, y, 40, 22, "Card/CommerceDist", 2, index, new String[]{"Commercial Hub", "Provides 2 gold."}, 2, new int[]{0});
 		
-		desc = new String[]{"Commercial Hub", "Provides 2 gold."};
-		cost = 2;
 	}
 	
 	public Card clone(int x, int y, int index) {

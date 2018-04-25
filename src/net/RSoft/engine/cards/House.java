@@ -6,12 +6,8 @@ import net.RSoft.engine.map.building.Housing;
 public class House extends Card {
 	
 	public House(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/House", 2, index);
+		super(x, y, 40, 22, "Card/House", 2, index, new String[]{"Housing", "Provides 2 housing."}, 2, new int[]{0});
 		
-		desc = new String[]{"Housing", "Provides 2 housing."};
-		
-		cost = 2;
-		noBuild = new int[]{0};
 	}
 	
 	public Card clone(int x, int y, int index) {

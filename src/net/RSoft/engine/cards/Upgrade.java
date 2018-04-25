@@ -5,11 +5,7 @@ import net.RSoft.engine.Main;
 public class Upgrade extends Card {
 	
 	public Upgrade(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/Upgrade", 2, index);
-		
-		desc = new String[]{"Upgrade", "Increases all outputs of selected tile", "by 1."};
-		
-		cost = 6;
+		super(x, y, 40, 22, "Card/Upgrade", 2, index, new String[]{"Upgrade", "Increases all outputs of selected tile", "by 1."}, 6, null);
 	}
 	
 	public Card clone(int x, int y, int index) {

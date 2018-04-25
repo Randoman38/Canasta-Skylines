@@ -6,12 +6,8 @@ import net.RSoft.engine.map.building.Farm;
 public class Crops extends Card {
 	
 	public Crops(int x, int y, int index) {
-		super(x, y, 40, 22, "Card/Farm", 2, index);
+		super(x, y, 40, 22, "Card/Farm", 2, index, new String[]{"Farm", "Provides 2 food."}, 2, new int[]{0});
 		
-		desc = new String[]{"Farm", "Provides 2 food."};
-		
-		cost = 2;
-		noBuild = new int[]{0};
 	}
 	
 	public Card clone(int x, int y, int index) {

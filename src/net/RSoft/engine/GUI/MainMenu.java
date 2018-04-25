@@ -31,10 +31,10 @@ public class MainMenu extends Bitmap {
 		aboot = new About(250, 240);
 		helping = new Help(362, 240);
 		
-		back = new Return(592, 4);
+		back = new Return(616, 4);
 		
 		linesA = new String[]{"Made in 48 hours for Ludum Dare.", "Theme: Combine 2 Incompatible Genres", "User: Randoman38"};
-		linesB = new String[]{"The goal is to reach a population of 50 people with homes.", "", "More people come the happier your city is, and some will leave if they", "become too unhappy.", "All stats update at the end of the month, as that's when everything's done being built.", "Every building has an adjacency bonus (buildings of the same kind) of 0.5.", "Harbors provide a bonus to all buildings.", "", "On the bottom bar are the Sell Card and Demolish buttons.", "To sell, select a card as if to build and then select the Sell nutton.", "You get half its build cost.", "To demolish, just select the button first, then the tile you want.", "It costs 4 to demolish.", "", "Good luck!"};
+		linesB = new String[]{"The goal is to reach a population of 50 people with homes.", "", "More people come the happier your city is, and some will leave if they", "become too unhappy.", "All stats update at the end of the month, as that's when everything's done being built.", "Every building has an adjacency bonus (buildings of the same kind) of 0.5.", "Harbors provide a bonus to all buildings.", "", "On the bottom bar are the Sell Card and Demolish buttons.", "To sell, select a card as if to build and then select the Sell Button.", "You get half its build cost.", "To demolish, just select the button first, then the tile you want.", "It costs 4 to demolish.", "", "Good luck!"};
 	}
 	
 	public void tick(){

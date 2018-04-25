@@ -10,10 +10,13 @@ public abstract class Card extends Button {
 	
 	public String[] desc;
 	
-	public Card(int x, int y, int width, int height, String url, int scale, int index) {
+	public Card(int x, int y, int width, int height, String url, int scale, int index, String[] desc, int cost, int[] noBuild) {
 		super(x, y, width, height, url, scale);
 		
 		this.index = index;
+		this.desc = desc;
+		this.cost = cost;
+		this.noBuild = noBuild;
 	}
 	
 	public void onPress() {
